@@ -47,7 +47,7 @@ let descriptions = {
 
 let anObject = {left: 1, right: 2};
 console.log(anObject.left);
-dele anObject.left;
+delete anObject.left;
 console.log(anObject.left);
 // -> undefined
 console.log("left" in anObject);
@@ -211,3 +211,95 @@ function remove(array, index) {
 }
 console.log(remove[["a", "b", "c", "d", "e"], 2]);
 // → ["a", "b", "d", "e"]
+
+// 10. Strings and their properties
+let kim  = "Kim";
+kim.age = 88;
+console.log(kim.age) 
+// -> undefined
+
+console.log("coconuts".slice(4, 7));
+// -> nut
+console.log("coconut".indexOf("u"));
+// -> 5
+console.log("one two three".indexOf("ee"));
+//-> 11
+console.log("   okay \n".trim());
+console.log(String(6).padStart(3, "0"));
+
+let sentence = "Secretarybirds specialize in stomping";
+let words = sentence.split(" ");
+console.log(words);
+// → ["Secretarybirds", "specialize", "in", "stomping"]
+console.log(words.join(". "));
+// → Secretarybirds. specialize. in. stomping
+
+console.log("LA".repeat(3));
+
+let string = "abc";
+console.log(string.length);
+console.log(string[1]);
+
+// 11. Rest parameters
+// is bound to an array containing all further arguments
+function max(...numbers) {
+    let result = -Infinity;
+    for (let number of numbers) {
+        if (number > result) result = number;
+    }
+    return result;
+}
+console.log(max(4, 1, 9, -2));
+
+let numbers = [5, 1, 7];
+console.log(max(...numbers));
+
+let words = ["never", "fully"];
+console.log(["will", ...words, "understand"]);
+
+// 12. The math object
+//can you define a binding with a name already taken?
+//yes: var, function || no: let, conse
+
+function randomPointOnCircle(radius) {
+    let angle = Math.random() * 2 * Math.PI;
+    return {x: radius * Math.cos(angle),
+            y: radius * Math.sin(angle)};
+}
+console.log(randomPointOnCircle(2));
+
+console.log(Math.floor(Math.random() * 10));
+
+// 13. Destructuring
+
+function phi(table) {
+    return (table[3] * table[0] - table[2] * table[1])/
+    Math.sqrt((table[2] + table[3]) *
+              (table[0] + table[1]) *
+              (table[1] + table[3]) *
+              (table[0] + table[2]));
+}
+
+function phi([n00, n01, n10, n11]) {
+    return (n11 * n00 - n10 * n01) /
+    Math.sqrt((n10 + n11) * (n00 + n01) *
+              (n01 + n11) * (n00 + n10));
+}
+
+let {name} = {name: "Faraji", age: 23};
+console.log(name);
+// -> Faraji
+
+// 14. JSON
+//  JavaScript Object Notation. It is widely used as a data storage and communication format on the Web
+
+{
+    "squirrel": false,
+    "events": ["work", "touched tree", "pizze", "running"]
+}
+
+let string = JSON.stringify({squirrel: false, events: ["weekend"]});
+console.log(string);
+console.log(JSON.parse(string).events);
+
+
