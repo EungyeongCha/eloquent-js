@@ -10,12 +10,26 @@ Next, write a sum function that takes an array of numbers and returns the sum of
 As a bonus assignment, modify your range function to take an optional third argument that indicates the “step” value used when building the array. If no step is given, the elements go up by increments of one, corresponding to the old behavior. The function call range(1, 10, 2) should return [1, 3, 5, 7, 9]. Make sure it also works with negative step values so that range(5, 2, -1) produces [5, 4, 3, 2].
 */
 
-function range(num1, num2) {
+function range(num1, num2, num3) {
     let array = [];
-    for (let i = num1; i <= num2; i++) {
-        array.push(i);
+    if (num1 > num2) {
+        for (let i = num1; i <= num2; i++) {
+            array.push(i);
+        }        
+    } else {
+        for (let j = num1; j <= num2; j--) {
+            array.push(i-num3);
+        }        
     }
     return array;
+}
+
+function sum(array) {
+    let sumArray = 0;
+    for (let i = 0; i <= array.length; i++) {
+        sumArray += array[i];
+    }
+    return sumArray;
 }
 
 console.log(range(1, 10));
