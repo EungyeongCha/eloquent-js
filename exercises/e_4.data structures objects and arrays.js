@@ -1,5 +1,6 @@
 /*
 The sum of a range
+
 The introduction of this book alluded to the following as a nice way to compute the sum of a range of numbers:
 
 console.log(sum(range(1, 10)));
@@ -17,8 +18,9 @@ function range(num1, num2, num3) {
             array.push(i);
         }        
     } else {
-        for (let j = num1; j <= num2; j--) {
-            array.push(i-num3);
+        for (let j = num1; j >= num2; j--) {
+            j -= num3;
+            array.push(j);
         }        
     }
     return array;
@@ -38,3 +40,66 @@ console.log(range(5, 2, -1));
 // → [5, 4, 3, 2]
 //console.log(sum(range(1, 10)));
 // → 55
+
+
+
+/*
+Reversing an array
+
+Arrays have a reverse method that changes the array by inverting the order in which its elements appear. For this exercise, write two functions, reverseArray and reverseArrayInPlace. The first, reverseArray, takes an array as argument and produces a new array that has the same elements in the inverse order. The second, reverseArrayInPlace, does what the reverse method does: it modifies the array given as argument by reversing its elements. Neither may use the standard reverse method.
+
+Thinking back to the notes about side effects and pure functions in the previous chapter, which variant do you expect to be useful in more situations? Which one runs faster?
+*/
+
+function reverseArray(arr) {
+    let array = [];
+    for (let i = arr.length; i >= 0; i--) {
+        array.push(arr[i]);
+    }
+    return array;
+}
+console.log(reverseArray(["A", "B", "C"]));
+
+let arrayValue = [1, 2, 3, 4, 5];
+function reverseArrayInPlace(arrayValue) {
+    let newLength = Math.floor(arrayValue.length / 2);
+    for (let j = newLength; j >= 0; j--) {
+        arrayValue[j] = arrayValue[arrayValue.length - 1 - i];
+    }
+}
+
+reverseArrayInPlace(arrayValue);
+console.log(arrayValue);
+
+/*
+A list
+
+Write a function arrayToList that builds up a list structure like the one shown when given [1, 2, 3] as argument. Also write a listToArray function that produces an array from a list. Then add a helper function prepend, which takes an element and a list and creates a new list that adds the element to the front of the input list, and nth, which takes a list and a number and returns the element at the given position in the list (with zero referring to the first element) or undefined when there is no such element.
+
+If you haven’t already, also write a recursive version of nth.
+
+*/
+
+
+
+/*
+Deep comparison
+
+Write a function deepEqual that takes two values and returns true only if they are the same value or are objects with the same properties, where the values of the properties are equal when compared with a recursive call to deepEqual.
+
+*/
+
+function deepEqual(obj1, obj2) {
+    if (typeof obj1 == "object" && typeof obj2 == "object"
+        obj1 != null && obj2 != null) {
+        if (Object.keys(obj1).length === Object.keys(obj2).length) {
+            for(let i = 0; i <= Object.keys(obj1).length; i++) {
+            if (Object.keys(obj1[i]) === Object.keys(obj2[i]);
+                return true;
+            }
+        }else {
+            return false;
+        }
+        
+    }
+}
