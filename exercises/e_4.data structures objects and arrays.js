@@ -13,14 +13,13 @@ As a bonus assignment, modify your range function to take an optional third argu
 
 function range(num1, num2, num3) {
     let array = [];
-    if (num1 > num2) {
+    if (num1 < num2) {
         for (let i = num1; i <= num2; i++) {
             array.push(i);
         }        
     } else {
         for (let j = num1; j >= num2; j--) {
-            j -= num3;
-            array.push(j);
+            array.push(j+=num3);
         }        
     }
     return array;
@@ -71,35 +70,35 @@ function reverseArrayInPlace(arrayValue) {
 reverseArrayInPlace(arrayValue);
 console.log(arrayValue);
 
-/*
-A list
-
-Write a function arrayToList that builds up a list structure like the one shown when given [1, 2, 3] as argument. Also write a listToArray function that produces an array from a list. Then add a helper function prepend, which takes an element and a list and creates a new list that adds the element to the front of the input list, and nth, which takes a list and a number and returns the element at the given position in the list (with zero referring to the first element) or undefined when there is no such element.
-
-If you haven’t already, also write a recursive version of nth.
-
-*/
-
-
-
-/*
-Deep comparison
-
-Write a function deepEqual that takes two values and returns true only if they are the same value or are objects with the same properties, where the values of the properties are equal when compared with a recursive call to deepEqual.
-
-*/
-
-function deepEqual(obj1, obj2) {
-    if (typeof obj1 == "object" && typeof obj2 == "object"
-        obj1 != null && obj2 != null) {
-        if (Object.keys(obj1).length === Object.keys(obj2).length) {
-            for(let i = 0; i <= Object.keys(obj1).length; i++) {
-            if (Object.keys(obj1[i]) === Object.keys(obj2[i]);
-                return true;
-            }
-        }else {
-            return false;
-        }
-        
-    }
-}
+///*
+//A list
+//
+//Write a function arrayToList that builds up a list structure like the one shown when given [1, 2, 3] as argument. Also write a listToArray function that produces an array from a list. Then add a helper function prepend, which takes an element and a list and creates a new list that adds the element to the front of the input list, and nth, which takes a list and a number and returns the element at the given position in the list (with zero referring to the first element) or undefined when there is no such element.
+//
+//If you haven’t already, also write a recursive version of nth.
+//
+//*/
+//
+//
+//
+///*
+//Deep comparison
+//
+//Write a function deepEqual that takes two values and returns true only if they are the same value or are objects with the same properties, where the values of the properties are equal when compared with a recursive call to deepEqual.
+//
+//*/
+//
+//function deepEqual(obj1, obj2) {
+//    if (typeof obj1 == "object" && typeof obj2 == "object"
+//        obj1 != null && obj2 != null) {
+//        if (Object.keys(obj1).length === Object.keys(obj2).length) {
+//            for(let i = 0; i <= Object.keys(obj1).length; i++) {
+//            if (Object.keys(obj1[i]) === Object.keys(obj2[i]);
+//                return true;
+//            }
+//        }else {
+//            return false;
+//        }
+//        
+//    }
+//}
