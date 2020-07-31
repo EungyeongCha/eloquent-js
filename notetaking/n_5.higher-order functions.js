@@ -95,3 +95,6 @@ function map(array, transform) {
 }
 let rtlScripts = SCRIPTS.filter(s => s.direction == "rtl");
 console.log(map(rtlScripts, s => s.name));
+
+
+
