@@ -97,4 +97,118 @@ let rtlScripts = SCRIPTS.filter(s => s.direction == "rtl");
 console.log(map(rtlScripts, s => s.name));
 
 
+// 5. Summarizing with reduce
+function reduce(array, combine, start) {
+    let current = start;
+    for (let element of array) {
+        current = combine(current, element);
+    }
+    return current;
+}
+console.log(reduce([1, 2, 3, 4], (a, b) => a + b, 0));
 
+function characterCount(script) {
+    return script.ranges.reduce((count, [from, to] )=> {
+        return count + (to - from);
+    }, 0);
+}
+console.log(SCRIPTS.reduce((a, b => {
+    return characterCount(a) < characterCount (b) ? b : a;
+})));
+
+// 6. Composability
+let biggest = null;
+for (let script of SCRIPTS) {
+    if (biggest == null ||
+        characterCount(biggest) < characterCount(script)) {
+            biggest = script;
+        }
+}
+console.log(biggest);
+
+function average(array) {
+    return array.reduce((a, b) => a + b) / array.length;
+}
+console.log(Math.round(average(
+    SCRIPTS.filters(s => s.living).map(s => s.year)
+)));
+console.log(Math.round(average(
+    SCRIPTS.filters(s => !s.living).map(s => s.year)
+)));
+
+let total = 0, count = 0;
+for (let script of SCRIPTS) {
+    if (script.living) {
+        total += script.year;
+        count += 1;
+    }
+}
+console.log(Math.round(total / count));
+
+
+// 7. Strings and character codes
+// some method takes a test function and tells you whether that function returns true for any of the elements in the array
+function characterScript(code) {
+    for (let script of SCRIPTS) {
+        if (script.ranges.some(([from, to]) => {
+            return code >= from && code < to;
+        })) {
+            return script;
+        }
+        return null;
+    }
+}
+
+// two emoji characters, horse and shoe
+let horseShoe = "🐴👟";
+console.log(horseShoe.length);
+// -> 4
+console.log(horseShoe[0]);
+// → (Invalid half-character)
+console.log(horseShoe.charCodeAt(0));
+// → 55357 (Code of the half-character)
+console.log(horseShoe.codePointAt(0));
+// → 128052 (Actual code for horse emoji)
+
+let roseDragon = "🌹🐉";
+for (let char of roseDragon) {
+    console.log(char);
+}
+// → 🌹
+// → 🐉
+
+
+// 8. Recognizing text
+function countBy(items, groupName) {
+    let counts = [];
+    for (let item of items) {
+        let name = groupName(item);
+        let known = counts.findIndex(c => c.name == name);
+        if (known == -1) {
+            counts.push({name, count: 1});
+        } else {
+            counts[known].count++;
+        }
+    }
+    return counts;
+}
+
+console.log(countBy([1, 2, 3, 4, 5], n => n > 2));
+// → [{name: false, count: 2}, {name: true, count: 3}]
+
+function textScript(text) {
+    let scripts = countBy(text, char => {
+        let script = characterScript(char.codePointAt(0));
+        return script ? script.name : "none";
+    }).filter(({name}) => name != "none");
+
+    let total = scripts.reduce((n, {count}) => n + count, 0);
+    if (total == 0) return "No scripts found";
+
+    return script.map(({name, count}) => {
+        return `${Math.round(count * 100 / total)}% ${name}`;
+    }).joun(", ");
+
+    console.log(textScripts('英国的狗说"woof", 俄罗斯的狗说"тяв"'));
+// → 61% Han, 22% Latin, 17% Cyrillic
+}
