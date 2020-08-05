@@ -31,19 +31,77 @@ class Vec {
 Groups
 
 Write a class called Group (since Set is already taken). Like Set, it has add, delete, and has methods. Its constructor creates an empty group, add adds a value to the group (but only if it isn’t already a member), delete removes its argument from the group (if it was a member), and has returns a Boolean value indicating whether its argument is a member of the group.
-*/
+
+Iterable groups
+
+Make the Group class from the previous exercise iterable.
+ */
 
 class Group {
     constructor() {
-        let newGroup = new Group;
+        this.members = [];
     }
 
-    add(val) {
-        if(!newGroup.includes(val)) {
-            newGroup.push(val);
+    add(value) {
+        if(!this.has(value)) {
+            this.members.push(value);
         }
     }
-    delete(val) {
-        
+    
+    delete(value) {
+        this.members = this.members.filter(v => v !== value);
+    }
+
+    has(value) {
+        return this.members.includes(value);
+    }
+
+    static from(collection) {
+        let group = new Group;
+        for (let value of collection) {
+            group.add(value);
+        }
+        return group;
     }
 }
+
+let group = Group.from([10, 20]);
+console.log(group.has(10));
+console.log(group.has(30));
+group.add(10);
+group.delete(10);
+console.log(group.has(10));
+
+
+class GroupIterator {
+    constructor(group) {
+        this.group = group;
+        this.position = 0;
+    }
+
+    next() {
+        if (this.position >= this.group.members.length) {
+            return {done: true};
+        } else {
+            let result = {value: this.group.members[this.position], done: false};
+            this.position++;
+            return result;
+        }
+    }
+}
+
+for (let value of Group.from(["a", "b", "c"])) {
+    console.log(value);
+  }
+
+/*
+Borrowing a method
+
+Can you think of a way to call hasOwnProperty on an object that has its own property by that name?
+*/
+
+let map = {one: true, two: true, hasOwnProperty: true};
+
+// Fix this call
+console.log(Object.prototype.hasOwnProperty.call(map, "one"));
+// → true
