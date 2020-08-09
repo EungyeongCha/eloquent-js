@@ -29,3 +29,10 @@ const roads = [
       return graph;
 
   }
+
+  const roadGraph = buildGraph(roads);
+
+
+
+  // 2. The task
+  
