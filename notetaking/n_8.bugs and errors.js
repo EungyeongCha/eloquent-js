@@ -18,7 +18,7 @@ console.log(name);
 
 "use strict";
 function Person(name) {this.name = name;}
-ler ferdinand = Person("Ferdinand"); // forgot new
+let ferdinand = Person("Ferdinand"); // forgot new
 // -> TypeError: Cannot set property 'name' of undefined
 
 // class notation returns error when called without new
@@ -179,6 +179,7 @@ const accounts = {
         } else {
             throw e;
         }
+    }
     }
 
 
