@@ -27,3 +27,16 @@ let notBinary = /[^01]/;
 console.log(notBinary.test("1100100010100110"));
 console.log(notBinary.test("1100100010200110"));
 
+
+// 4. Repeating parts of a pattern
+console.log(/'d+'/.test("'123'"));
+console.log(/'d+'/.test("''"));
+console.log(/'d*'/).test("'123'"); // 0 and more
+console.log(/'d*'/).test("''");
+
+let neighbor = /neighbou?r/; // 0 or 1 times
+console.log(neighbor.test("neighbour"));
+console.log(neighbor.test("neighbor"));
+
+let dateTime = /\d{1,2}-\d{1,2}-\d{4} \d{1,2}:\d{2}/;
+console.log(dateTime.test("1-30-2003 8:45"));
