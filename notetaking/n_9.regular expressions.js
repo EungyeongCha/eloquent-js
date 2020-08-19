@@ -40,3 +40,11 @@ console.log(neighbor.test("neighbor"));
 
 let dateTime = /\d{1,2}-\d{1,2}-\d{4} \d{1,2}:\d{2}/;
 console.log(dateTime.test("1-30-2003 8:45"));
+
+
+
+// 5. Grouping subexpressions
+// Use () and + or * to match more than one element at a time
+// i: case inseneitive
+let cartoonCrying = /boo+(hoo+)+/i;
+console.log(cartoonCrying.test("Boohoooohoohooo"));
