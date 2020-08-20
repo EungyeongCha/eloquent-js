@@ -48,3 +48,16 @@ console.log(dateTime.test("1-30-2003 8:45"));
 // i: case inseneitive
 let cartoonCrying = /boo+(hoo+)+/i;
 console.log(cartoonCrying.test("Boohoooohoohooo"));
+
+
+
+// 6. Matches and groups
+let match = /\+d/.exec("one two 100");
+console.log(match);
+console.log(match.index);
+
+
+console.log("one two 100".match(/\d+/));
+
+console.log(/bad(ly)?/.exec("bad"));
+console.log(/(\d)+/.exec("123"));
