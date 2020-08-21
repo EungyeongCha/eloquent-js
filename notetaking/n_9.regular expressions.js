@@ -61,3 +61,26 @@ console.log("one two 100".match(/\d+/));
 
 console.log(/bad(ly)?/.exec("bad"));
 console.log(/(\d)+/.exec("123"));
+
+
+
+// 7. The date class
+// current date and time
+console.log(new Date());
+
+// specific time
+console.log(new Date(2009, 11, 9));
+console.log(new Date(2009, 11, 9, 12, 59, 59, 999));
+
+// milliseconds since the 1970
+console.log(new Date(2013, 11, 19).getTime());
+console.log(new Date(1387407600000));
+
+// a date object created from a string(_: to skip the full match element)
+function getDate(string) {
+    let [_, month, day, year] =
+    /(\d{1,2})-(\d{1,2})-(\d{4})/.exec(string);
+    return new Date(year, month -1, day);
+}
+console.log(getDate("1-30-2003"));
+// → Thu Jan 30 2003 00:00:00 GMT+0100 (CET)
