@@ -84,3 +84,11 @@ function getDate(string) {
 }
 console.log(getDate("1-30-2003"));
 // → Thu Jan 30 2003 00:00:00 GMT+0100 (CET)
+
+
+
+// 8. Word and string boundaries
+// ^: start, ?: end
+// /b: boundary
+console.log(/cat/.test("concatenate"));
+console.log(/\bcat\b/.test("concatenate"));
