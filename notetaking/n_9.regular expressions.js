@@ -92,3 +92,88 @@ console.log(getDate("1-30-2003"));
 // /b: boundary
 console.log(/cat/.test("concatenate"));
 console.log(/\bcat\b/.test("concatenate"));
+
+
+// 9. Choice patterns
+//pipe(|): denotes a choice between the pattern to its left and the pattern to its right
+let animalCount = /\b\d+ (pig|cow|chicken)s?\b/;
+console.log(animalCount.test("15 pigs"));
+console.log(animalCount.test("15 pigchickens"));
+
+
+// 10. The replace method
+// g: replace all matches
+console.log("papa".replace("p", "m"));
+
+console.log("Borobudur".replace(/[ou]/, "a"));
+console.log("Borobudur".replace(/[ou]/g, "a"));
+
+// $: refers to parenthesized groups
+console.log(
+    "Liskov, Barbara\nMcCarthy, John\nWadler, Philip"
+    .replace(/(\w+), (\w+)/g, "$2 $1");
+)
+
+// passing a function as a second arg to replace
+let s = "the cia and fbi";
+console.log(s.replace(/\b(fbi|cia)\b/g, 
+            str => str.toUpperCase()));
+
+let stock = "1 lemon, 2 cabbages, and 101 eggs";
+function minusOne(match, amount, unit) {
+    amount = Number(amount) - 1;
+    if (amount == 1) { // only one left, remove the 's'
+        unit = unit.slice(0, unit.length - 1);
+    } else if (amount == 0) {
+        amount = "no";
+    }
+    return amount + " " + unit;
+}
+console.log(stock.replace(/(\d+) (\w+)/g, minusOne));
+
+
+// 11. Greed
+// greedy operators(+, *, ?, and {}): match as much as they can and backtracks from there
+// use nongreedy operators(+?, *?, ??, {}?)
+
+function stripComments(code) {
+    return code.replace(/\/\/.*|\/\*[^]*\*\//g, "");
+}
+
+function stripComments(code) {
+    return code.replace(/\/\/.*|\/\*[^]*?\*\//g, "");
+}
+
+// 12. Dymanically creating regexp objects
+let name = "harry";
+let text = "Harry is a suspicious character.";
+let regexp = new RegExp("\\b("+ name +")\\b", "gi");
+console.log(text.replace(regexp, "_$1_"));
+
+
+// 13. The search method
+//search: returns the first index(found), -1(not found)
+console.log("   word".search(/\S/));
+console.log("   ".search(/\S/));
+
+
+// 14. The lastIndex property
+// sticky(y): match succeed only if it starts at lastIndex
+// global(g): search for a position where a match can start
+// If the match was successful, the call to exec automatically updates the lastIndex property to point after the match.
+
+let pattern = /y/g;
+pattern.lastIndex = 3;
+let match = pattern.exec("xyzzy");
+console.log(match.index); //4
+console.log(pattern.lastIndex); //5
+
+let global = /abc/g;
+console.log(global.exec("xyz abc"));
+let sticky = /abc/y;
+console.log(sticky.exec("xyz abc"));
+
+
+
+
+
