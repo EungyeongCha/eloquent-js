@@ -52,12 +52,3 @@ function verify(regexp, yes, no) {
       console.log(`Unexpected match for '${str}'`);
     }
 }
-
-/*
-Quoting style
-Think of a pattern that distinguishes these two kinds of quote usage and craft a call to the replace method that does the proper replacement.
-*/
-let text = "'I'm the cook,' he said, 'it's my job.'";
-// Change this call.
-console.log(text.replace(/(\W)'|'(\W)/, " "));
-// → "I'm the cook," he said, "it's my job."
